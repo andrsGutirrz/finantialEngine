@@ -1,6 +1,7 @@
 import dataclasses
 import json
 from dataclasses import dataclass
+from datetime import datetime
 from enum import Enum
 
 from expenseEngine.expenseCategory import ExpenseCategory
@@ -8,11 +9,11 @@ from expenseEngine.expenseCategory import ExpenseCategory
 
 @dataclass
 class Expense:
-    notes: str
+    side_note: str
     amount: float
     category: ExpenseCategory
-    createTs: str
-    expenseTs: str
+    createTs: datetime
+    expenseTs: datetime
 
 
 class ExpenseJsonEncoder(json.JSONEncoder):
@@ -21,4 +22,6 @@ class ExpenseJsonEncoder(json.JSONEncoder):
             return dataclasses.asdict(o)
         if isinstance(o, Enum):
             return o.value
+        if isinstance(o, datetime):
+            return o.isoformat()
         return super().default(o)

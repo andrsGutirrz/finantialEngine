@@ -1,12 +1,15 @@
 # Entry point
 import json
+
 from flask import Flask
 
-from expenseEngine.expenseEngine import ExpenseEngine
+from common.database.postgresClient import PostgresClient
 from expenseEngine.expense import ExpenseJsonEncoder
+from expenseEngine.expenseEngine import ExpenseEngine
 
 app = Flask(__name__)
-expenseEngine = ExpenseEngine()
+postgres_client = PostgresClient()
+expenseEngine = ExpenseEngine(db=postgres_client)
 
 
 @app.route("/")
@@ -17,7 +20,7 @@ def hello():
 @app.route("/expense", methods=["GET"])
 def get_expenses():
     expenses = expenseEngine.get_all_expenses()
-    return json.dumps(expenses, cls=ExpenseJsonEncoder)
+    return json.dumps(expenses, indent=4, cls=ExpenseJsonEncoder)
 
 
 if __name__ == '__main__':

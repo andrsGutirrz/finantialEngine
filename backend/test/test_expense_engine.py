@@ -1,12 +1,13 @@
 import unittest
 
 from common.database.postgresClient import PostgresClient
+from expenseEngine.expenseEngine import ExpenseEngine
 
 
 class PostgresClientTest(unittest.TestCase):
 
     def test_connection_and_dummy_query(self):
         postgres_client = PostgresClient()
-        query_result = postgres_client.test_query()
-        self.assertFalse(len(query_result)==0)
-
+        expense_engine = ExpenseEngine(db=postgres_client)
+        expense_engine.get_all_expenses()
+        self.assertFalse(False)
