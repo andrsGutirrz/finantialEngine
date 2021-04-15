@@ -9,11 +9,11 @@ from expenseEngine.expenseCategory import ExpenseCategory
 
 @dataclass
 class Expense:
-    side_note: str
-    amount: float
-    category: ExpenseCategory
-    createTs: datetime
-    expenseTs: datetime
+    side_note: str = None
+    amount: float = None
+    category: ExpenseCategory = None
+    create_ts: datetime = None
+    expense_ts: datetime = None
 
 
 class ExpenseJsonEncoder(json.JSONEncoder):
