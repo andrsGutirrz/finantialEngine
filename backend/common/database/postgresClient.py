@@ -13,6 +13,7 @@ class PostgresClient:
             db_host = os.environ.get('dbhost')
             db_password = os.environ.get('dbpassword')
             # self.connection = psycopg2.connect(f"dbname='postgres' user='postgres' host='localhost' password='changeme'")
+            print(f"dbname='{db_name}' user='{db_user}' host='{db_host}' password='{db_password}'")
             self.connection = psycopg2.connect(f"dbname='{db_name}' user='{db_user}' host='{db_host}' password='{db_password}'")
         except Exception as e:
             print(f"I am unable to connect to the database \n {e}")
