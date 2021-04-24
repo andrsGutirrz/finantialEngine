@@ -2,7 +2,7 @@ runtime: python38
 service: finantial
 
 env_variables:
-  dbname: "spikes-268805:us-central1:finantial-db"
+  dbname: "postgres"
   dbuser: "postgres"
   dbhost: "35.232.216.234"
   dbpassword: "rayashit"
