@@ -3,11 +3,7 @@
 
 name: Python application
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -34,3 +30,5 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+    - name: Show secrets
+      run: echo "Hello $MY_SUPER_SECRET!"
