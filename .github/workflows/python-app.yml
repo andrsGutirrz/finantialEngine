@@ -32,3 +32,9 @@ jobs:
         pytest
     - name: Show secrets
       run: echo "Hello ${{ secrets.MY_SUPER_SECRET }} !"
+
+  gcp:
+    runs-on: ubuntu-latest
+
+    steps:
+    - run: gcloud -v
