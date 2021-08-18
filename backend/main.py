@@ -1,5 +1,4 @@
 # Entry point
-import json
 
 from flask import Flask, request
 from flask import jsonify
@@ -15,7 +14,7 @@ expenseEngine = ExpenseEngine(db=postgres_client)
 
 @app.route("/")
 def hello():
-    return "Hello guys"
+    return "Finantial Engine API"
 
 
 @app.route("/expense", methods=["GET", "POST"])

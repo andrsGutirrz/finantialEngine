@@ -1,5 +1,5 @@
 runtime: python38
-service: finantial
+service: finantial-backend
 
 env_variables:
   dbname: "postgres"
