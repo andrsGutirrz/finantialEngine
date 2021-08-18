@@ -1,6 +1,6 @@
 from typing import List
 
-from common.database.postgresClient import PostgresClient
+# from common.database.postgresClient import PostgresClient
 from common.date_utils import date_utils
 from expenseEngine.expense import Expense
 from expenseEngine.expenseCategory import ExpenseCategory
@@ -8,8 +8,8 @@ from expenseEngine.expenseCategory import ExpenseCategory
 
 class ExpenseEngine:
 
-    def __init__(self, db: PostgresClient):
-        self._db = db
+    # def __init__(self, db: PostgresClient):
+    #     self._db = db
 
     def get_all_expenses(self) -> List[Expense]:
 
