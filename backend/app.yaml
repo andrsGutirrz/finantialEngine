@@ -4,6 +4,4 @@ service: finantial
 env_variables:
   dbname: "postgres"
   dbuser: "postgres"
-  dbhost: "35.232.216.234"
-  dbpassword: "rayashit"
   
