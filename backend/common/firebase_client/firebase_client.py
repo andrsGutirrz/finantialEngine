@@ -10,7 +10,8 @@ def init():
         cred = credentials.ApplicationDefault()
 
         firebase_admin.initialize_app(credential=cred, options={
-            'databaseURL': 'https://finantial-engine-fb-default-rtdb.firebaseio.com/'
+            # 'databaseURL': 'https://finantial-engine-fb-default-rtdb.firebaseio.com/'
+            'databaseURL': 'https://spikes-268805-default-rtdb.firebaseio.com/'
         })
 
     except Exception as e:

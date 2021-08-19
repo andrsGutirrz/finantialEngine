@@ -1,16 +1,10 @@
 # Entry point
 
 from flask import Flask, request
-from flask import jsonify
 
-# from common.database.postgresClient import PostgresClient
-from expenseEngine.expense import ExpenseJsonEncoder
-from expenseEngine.expenseEngine import ExpenseEngine
 from common.firebase_client import firebase_client
 
 app = Flask(__name__)
-# postgres_client = PostgresClient()
-# expenseEngine = ExpenseEngine(db=postgres_client)
 
 firebase_client.init()
 
@@ -18,23 +12,20 @@ firebase_client.init()
 @app.route("/")
 def hello():
     from firebase_admin import db
+    from datetime import datetime
+    now_string = datetime.utcnow().strftime("%b %d %Y %H:%M:%S")
+    db.reference("/datetimes").set(now_string)
+    return f"Finantial Engine API: {now_string}"
 
-    ref = db.reference("/").get()
-    return "Finantial Engine API"
 
-
-# @app.route("/expense", methods=["GET", "POST"])
-# def get_expenses():
-#     if request.method == "GET":
-#         expenses = expenseEngine.get_all_expenses()
-#         app.json_encoder = ExpenseJsonEncoder
-#         return jsonify(expenses)
-#     if request.method == 'POST':
-#         raw_data = request.json
-#         if raw_data:
-#             expenseEngine.handle_expense_payload(raw_data)
-#             return jsonify(success=True)
-#     return jsonify(success=False)
+@app.route("/expense", methods=["GET", "POST"])
+def get_expenses():
+    if request.method == "GET":
+        pass
+    if request.method == 'POST':
+        raw_data = request.json
+        if raw_data:
+            pass
 
 
 if __name__ == '__main__':
