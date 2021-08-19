@@ -12,8 +12,10 @@ firebase_client.init()
 @app.route("/")
 def hello():
     from firebase_admin import db
-    ref = db.reference("/").get()
-    return "Finantial Engine API"
+    from datetime import datetime
+    now_string = datetime.utcnow().strftime("%b %d %Y %H:%M:%S")
+    db.reference("/datetimes").set(now_string)
+    return f"Finantial Engine API: {now_string}"
 
 
 @app.route("/expense", methods=["GET", "POST"])
