@@ -37,7 +37,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Create app.yaml file
-      working-directory: deploy_scripts
       run: |
         ls
       #./backend_deploy.sh ${{ secrets.GCP_FIREBASE_PROJECT_ID }} 
