@@ -37,9 +37,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Create app.yaml file
-      run: |
-        ls
-      #./backend_deploy.sh ${{ secrets.GCP_FIREBASE_PROJECT_ID }} 
+      run: | 
+        ./backend_deploy.sh ${{ secrets.GCP_FIREBASE_PROJECT_ID }} 
 
   # deploy:
   #   name: Deploying to Google Cloud
