@@ -2,6 +2,5 @@ runtime: python38
 service: finantial-backend
 
 env_variables:
-  dbname: "postgres"
-  dbuser: "postgres"
+  GCP_FIREBASE_PROJECT_ID: "gcp_firebase_project_id"
   
