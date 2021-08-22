@@ -35,7 +35,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - run: ls -a
+    - run: pwd
+    - run: cd ..
     - run: ls
+    - run: pwd
     # - run: ./scripts/backend_deploy.sh ${{ secrets.GCP_FIREBASE_PROJECT_ID }} 
 
   # deploy:
