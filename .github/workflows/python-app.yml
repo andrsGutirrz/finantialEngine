@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - run: sh deploy_scripts ${{ secrets.GCP_FIREBASE_PROJECT_ID }} 
+    - run: sh ./deploy_scripts/backend_deploy.sh ${{ secrets.GCP_FIREBASE_PROJECT_ID }} 
 
   deploy:
     name: Deploying to Google Cloud
