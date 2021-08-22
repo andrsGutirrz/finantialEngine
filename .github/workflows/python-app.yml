@@ -37,6 +37,7 @@ jobs:
     steps:
     # - run: sh ./../../deploy_scripts/backend_deploy.sh ${{ secrets.GCP_FIREBASE_PROJECT_ID }} 
     - run: pwd
+    - run: ls -l
 
   deploy:
     name: Deploying to Google Cloud
