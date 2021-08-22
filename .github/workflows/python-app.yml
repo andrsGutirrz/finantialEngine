@@ -35,10 +35,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v2
     - name: Create app.yaml file
       working-directory: deploy_scripts
       run: |
-        echo jeje
+        ls
       #./backend_deploy.sh ${{ secrets.GCP_FIREBASE_PROJECT_ID }} 
 
   # deploy:
