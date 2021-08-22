@@ -37,6 +37,8 @@ jobs:
     steps:
     - name: Create app.yaml file
       working-directory: deploy_scripts
+      run: |
+        echo jeje
       #./backend_deploy.sh ${{ secrets.GCP_FIREBASE_PROJECT_ID }} 
 
   # deploy:
