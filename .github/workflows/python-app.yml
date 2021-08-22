@@ -37,9 +37,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Create app.yaml file
+      with: # Set the secret as an input
+        gcpFirebaseProjectId: ${{ secrets.GCP_FIREBASE_PROJECT_ID }}
       run: | 
         chmod +x ./deploy_scripts/backend_deploy.sh
-        ./deploy_scripts/backend_deploy.sh ***
+        ./deploy_scripts/backend_deploy.sh gcpFirebaseProjectId
 
   # deploy:
   #   name: Deploying to Google Cloud
