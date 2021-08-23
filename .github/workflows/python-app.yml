@@ -37,7 +37,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Create app.yaml file
-    - uses: actions/checkout@v2
       with: # Set the secret as an input
         gcpFirebaseProjectId: ${{ secrets.GCP_FIREBASE_PROJECT_ID }}
       run: | 
