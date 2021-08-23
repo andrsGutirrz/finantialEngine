@@ -35,10 +35,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Create app.yaml file
+    - name: Create app.yaml file -- setting vars
       uses: actions/checkout@v2
       with: # Set the secret as an input
         gcpFirebaseProjectId: ${{ secrets.GCP_FIREBASE_PROJECT_ID }}
+    - name: Create app.yaml file -- replace strings
       run: | 
         chmod +x ./deploy_scripts/backend_deploy.sh
         ./deploy_scripts/backend_deploy.sh gcpFirebaseProjectId
