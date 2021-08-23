@@ -37,12 +37,11 @@ jobs:
     steps:
     - name: Create app.yaml file -- setting vars
       uses: actions/checkout@v2
-      with: # Set the secret as an input
+      env: # Set the secret as an input
         gcpFirebaseProjectId: ${{ secrets.GCP_FIREBASE_PROJECT_ID }}
-    - name: Create app.yaml file -- replace strings
       run: | 
         chmod +x ./deploy_scripts/backend_deploy.sh
-        ./deploy_scripts/backend_deploy.sh gcpFirebaseProjectId
+        ./deploy_scripts/backend_deploy.sh $gcpFirebaseProjectId
 
   # deploy:
   #   name: Deploying to Google Cloud
