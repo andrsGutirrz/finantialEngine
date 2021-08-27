@@ -10,7 +10,7 @@ def init():
         cred = credentials.ApplicationDefault()
 
         firebase_admin.initialize_app(credential=cred, options={
-            'databaseURL': f'{gcp_firebase_project_id}.firebaseio.com/'
+            'databaseURL': f'https://{gcp_firebase_project_id}.firebaseio.com/'
         })
 
     except Exception as e:
