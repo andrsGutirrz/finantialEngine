@@ -42,7 +42,7 @@ jobs:
         gcpFirebaseProjectId: '${{ secrets.GCP_FIREBASE_PROJECT_ID }}'
       run: | 
         chmod +x ./deploy_scripts/backend_deploy.sh
-        ./deploy_scripts/backend_deploy.sh $gcpFirebaseProjectId
+        ./deploy_scripts/backend_deploy.sh andres
 
   # deploy:
   #   name: Deploying to Google Cloud
