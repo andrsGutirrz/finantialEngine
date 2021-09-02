@@ -1,20 +1,46 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-
 name: Finantial Backend
 
 on: [push, pull_request]
 
 jobs:
+  unittest:
 
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Install dependenciesb e
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        if [ -f backend/requirements.txt ]; then pip install -r backend/requirements.txt; fi
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Test with pytest
+      run: |
+        pytest
   deploy:
     name: Deploying to Google Cloud
     runs-on: ubuntu-latest
-#     needs: [unittest]
+    needs: [unittest]
+    
     steps:
     - name: Checkout
+      uses: actions/checkout@v2
+    
     - uses: actions/checkout@v2
+    - uses: secrethub/actions/env-export@v0.2.1
     - name: Create app.yaml file -- setting vars
       env: # Set the secret as an input
         gcpFirebaseProjectId: ${{ secrets.GCP_FIREBASE_PROJECT_ID }}
@@ -29,4 +55,3 @@ jobs:
         version: v1
         project_id: ${{ secrets.GCP_PROJECT }}
         credentials: ${{ secrets.GCP_CREDENTIALS }}
-
