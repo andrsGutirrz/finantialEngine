@@ -6,12 +6,11 @@ from firebase_admin import credentials
 
 def init():
     try:
-        project_id = "finantial-engine-fb-default-rtdb"
+        gcp_firebase_project_id = os.environ.get('GCP_FIREBASE_PROJECT_ID')
         cred = credentials.ApplicationDefault()
-
+        print(f"name {gcp_firebase_project_id}")
         firebase_admin.initialize_app(credential=cred, options={
-            # 'databaseURL': 'https://finantial-engine-fb-default-rtdb.firebaseio.com/'
-            'databaseURL': 'https://spikes-268805-default-rtdb.firebaseio.com/'
+            'databaseURL': f'https://{gcp_firebase_project_id}.firebaseio.com/'
         })
 
     except Exception as e:
