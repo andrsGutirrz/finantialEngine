@@ -2,19 +2,21 @@
 
 from flask import Flask, request
 
-from common.firebase_client import firebase_client
+from common.firebase_client import firebase_factory
+from common.firebase_client.firebase_client import FirebaseClientBase
 
 app = Flask(__name__)
 
-firebase_client.init()
+firebase_factory.init()
+
+firebase_client = FirebaseClientBase()
 
 
 @app.route("/")
 def hello():
-    from firebase_admin import db
     from datetime import datetime
     now_string = datetime.utcnow().strftime("%b %d %Y %H:%M:%S")
-    db.reference("/datetimes").set(now_string)
+    firebase_client.set_value("datetimes", now_string)
     return f"Finantial Engine API: {now_string}"
 
 
