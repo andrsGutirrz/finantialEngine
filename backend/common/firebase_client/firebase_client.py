@@ -1,17 +1,23 @@
-import os
+from typing import Union
 
-import firebase_admin
-from firebase_admin import credentials
+from firebase_admin import db
+
+from common.firebase_client import firebase_client_base
 
 
-def init():
-    try:
-        gcp_firebase_project_id = os.environ.get('GCP_FIREBASE_PROJECT_ID')
-        cred = credentials.ApplicationDefault()
-        print(f"name {gcp_firebase_project_id}")
-        firebase_admin.initialize_app(credential=cred, options={
-            'databaseURL': f'https://{gcp_firebase_project_id}.firebaseio.com/'
-        })
+class FirebaseClientBase(firebase_client_base.FirebaseClientBase):
+    """
+    Firebase client interface
+    """
 
-    except Exception as e:
-        print(e)
+    def set_value(self, path: str, values: Union[dict, str]):
+        db.reference(path).set(values)
+
+    def get_value(self, path: str) -> object:
+        return db.reference(path).get()
+
+    def update_value(self, path: str, values: dict):
+        db.reference(path).update(values)
+
+    def delete(self, path: str):
+        db.reference(path).delete()
