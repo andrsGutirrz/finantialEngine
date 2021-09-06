@@ -1,3 +1,6 @@
+from typing import Optional
+
+
 class FirebaseClientBase:
     """
     Firebase client interface
@@ -6,7 +9,7 @@ class FirebaseClientBase:
     def set_value(self, path: str, values: dict):
         pass
 
-    def get_value(self, path: str) -> dict:
+    def get_value(self, path: str) -> Optional[dict]:
         pass
 
     def update_value(self, path: str, values: dict):

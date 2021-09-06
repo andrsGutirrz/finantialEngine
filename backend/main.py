@@ -4,12 +4,14 @@ from flask import Flask, request
 
 from common.firebase_client import firebase_factory
 from common.firebase_client.firebase_client import FirebaseClientBase
+from expense_engine.expense import ExpenseJsonEncoder
 
 app = Flask(__name__)
 
 firebase_factory.init()
 
 firebase_client = FirebaseClientBase()
+app.json_encoder = ExpenseJsonEncoder
 
 
 @app.route("/")
@@ -17,7 +19,7 @@ def hello():
     from datetime import datetime
     now_string = datetime.utcnow().strftime("%b %d %Y %H:%M:%S")
     firebase_client.set_value("datetimes", now_string)
-    return f"Finantial Engine API: {now_string}"
+    return f"Financial Engine API: {now_string}"
 
 
 @app.route("/expense", methods=["GET", "POST"])
